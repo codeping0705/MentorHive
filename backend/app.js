@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Health check
-app.get("/", (req, res) => {
+app.get("/v1", (req, res) => {
   res.json({ activeStatus: true, error: false });
 });
 
