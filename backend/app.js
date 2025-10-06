@@ -16,6 +16,7 @@ app.use(cookieParser());
 // Health check
 app.get("/", (req, res) => {
   res.json({ activeStatus: true, error: false });
+  res.send({ mesage: "Hello from backend!" });
 });
 
 // ✅ Use routes
