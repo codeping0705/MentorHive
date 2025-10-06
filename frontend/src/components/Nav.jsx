@@ -1,8 +1,24 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
   const [isHamMenuOpen, setIsHamMenuOpen] = useState(false);
+
+  const signUpMentorBtnClick = () => {
+    setIsHamMenuOpen(false);
+    navigate("/signup/mentor");
+  };
+
+  const signUpStudentBtnClick = () => {
+    setIsHamMenuOpen(false);
+    navigate("/signup/student");
+  };
+
+  const signInBtnClick = () => {
+    setIsHamMenuOpen(false);
+    navigate("/signin");
+  };
 
   return (
     <nav className="bg-blue-200 shadow-md">
@@ -28,38 +44,56 @@ const Nav = () => {
           {/* Desktop Navigation */}
           <ul className="hidden lg:flex items-center space-x-6">
             <li>
-              <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition duration-300">
+              <button
+                onClick={signUpMentorBtnClick}
+                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition duration-300"
+              >
                 Become A Mentor!
               </button>
             </li>
             <li>
-              <button className="px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition duration-300">
+              <button
+                onClick={signInBtnClick}
+                className="px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition duration-300"
+              >
                 Sign in
               </button>
             </li>
             <li>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+              <button
+                onClick={signUpStudentBtnClick}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+              >
                 Sign up
               </button>
             </li>
           </ul>
         </div>
 
-        {/* Mobile Menu when its Open */}
+        {/* Mobile Menu */}
         {isHamMenuOpen && (
           <ul className="lg:hidden mt-4 space-y-3">
             <li>
-              <button className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition duration-300">
+              <button
+                onClick={signUpMentorBtnClick}
+                className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition duration-300"
+              >
                 Become A Mentor!
               </button>
             </li>
             <li>
-              <button className="w-full px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition duration-300">
+              <button
+                onClick={signInBtnClick}
+                className="w-full px-4 py-2 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 transition duration-300"
+              >
                 Sign in
               </button>
             </li>
             <li>
-              <button className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+              <button
+                onClick={signUpStudentBtnClick}
+                className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
+              >
                 Sign up
               </button>
             </li>

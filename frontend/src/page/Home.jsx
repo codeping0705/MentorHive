@@ -455,6 +455,45 @@ const Home = () => {
           </div>
         </section>
 
+        {/* get started section */}
+        <section className="bg-gray-50 py-16 md:py-24">
+          <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-center md:text-left">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+                Unlock Your <span className="text-blue-600">Potential</span>{" "}
+                with
+                <span className="text-purple-600"> ElevateHub</span>
+              </h2>
+              <p className="text-lg md:text-xl text-gray-700 mb-8">
+                Elevate your career and personal growth with the right
+                mentorship. Learn from industry experts, gain real-world
+                insights, and transform your ambition into achievement.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                  Get Started
+                </button>
+                <button className="px-6 py-3 bg-gray-200 text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
+                  Learn More
+                </button>
+              </div>
+            </div>
+
+            {/* Right Image */}
+            <div className="relative">
+              <img
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+                alt="Unlock Potential"
+                className="rounded-xl shadow-lg w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-black opacity-20 rounded-xl"></div>
+            </div>
+          </div>
+        </section>
+
         {/* pricing plan section*/}
         <section className="py-16 md:py-24 bg-gray-50">
           <div className="container mx-auto px-6 md:px-12 text-center">
@@ -583,45 +622,6 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* get started section */}
-        <section className="bg-gray-50 py-16 md:py-24">
-          <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-center md:text-left">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
-                Unlock Your <span className="text-blue-600">Potential</span>{" "}
-                with
-                <span className="text-purple-600"> ElevateHub</span>
-              </h2>
-              <p className="text-lg md:text-xl text-gray-700 mb-8">
-                Elevate your career and personal growth with the right
-                mentorship. Learn from industry experts, gain real-world
-                insights, and transform your ambition into achievement.
-              </p>
-
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                  Get Started
-                </button>
-                <button className="px-6 py-3 bg-gray-200 text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
-                  Learn More
-                </button>
-              </div>
-            </div>
-
-            {/* Right Image */}
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
-                alt="Unlock Potential"
-                className="rounded-xl shadow-lg w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-black opacity-20 rounded-xl"></div>
             </div>
           </div>
         </section>
