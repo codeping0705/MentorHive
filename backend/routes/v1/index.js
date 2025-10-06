@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authRoute = require("./auth.route");
 const homeRoute = require("./home.route");
-// const mentorRoute = require("./mentor.route");
+const mentorRoute = require("./mentor.route");
 
 const Routes = [
   {
@@ -13,10 +13,10 @@ const Routes = [
     path: "/auth",
     route: authRoute,
   },
-//   {
-//     path: "/mentor",
-//     route: mentorRoute,
-//   },
+  {
+    path: "/mentor",
+    route: mentorRoute,
+  },
 ];
 
 Routes.forEach((route) => {
