@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const httpStatus = require("../utils/httpStatus");
-const ApiError = requre("../helper/apiError.js");
+const ApiError = require("../helper/apiError.js");
 
 const ValidationSource = {
   BODY: "body",
@@ -13,7 +13,7 @@ const ValidationSource = {
 module.exports = (schema, source = ValidationSource.BODY) => {
   return (req, res, next) => {
     try {
-      const { error } = this.schema.validate(req[source]);
+      const { error } =schema.validate(req[source]);
       if (!error) return next();
       const { details } = error;
       const message = details

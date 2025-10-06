@@ -13,12 +13,12 @@ const router = express.Router();
 router.post(
   "/signup",
   validate(signUpValidation),
-  asyncHandler(authController.signup)
+  asyncHandler(authController.signUp)
 );
 router.post(
   "/signin",
   validate(signInValidation),
-  asyncHandler(authController.signin)
+  asyncHandler(authController.signIn)
 );
 
 module.exports = router;
