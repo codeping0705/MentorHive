@@ -40,7 +40,7 @@ userSchema.pre("save", async function (next) {
 });
 
 // Fast search indexing
-userSchema.index({ email: 1 },{ unique: true });
+// userSchema.index({ email: 1 },{ unique: true });
 
 const userModel = model("User", userSchema);
 module.exports = userModel;

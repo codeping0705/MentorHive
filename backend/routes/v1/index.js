@@ -4,23 +4,8 @@ const authRoute = require("./auth.route");
 const homeRoute = require("./home.route");
 const mentorRoute = require("./mentor.route");
 
-const Routes = [
-  {
-    path: "/",
-    route: homeRoute,
-  },
-  {
-    path: "/auth",
-    route: authRoute,
-  },
-  {
-    path: "/mentor",
-    route: mentorRoute,
-  },
-];
-
-Routes.forEach((route) => {
-  router.use(route.path, route.route);
-});
+router.use("/auth", authRoute);
+router.use("/", homeRoute);
+router.use("/mentor", mentorRoute);
 
 module.exports = router;

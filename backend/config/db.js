@@ -10,16 +10,14 @@ mongoose
     console.log(err);
   });
 
-mongoose.connection.on("Connected..", () => {
-  console.log("Mongoose default connection open to" + config.DB_URL);
+mongoose.connection.on("connected", () => {
+  console.log("✅ Mongoose connected:", config.DB_URL);
 });
-
 mongoose.connection.on("error", (err) => {
-  console.error("Mongoose default connecttion has an error" + err);
+  console.error("❌ Mongoose error:", err);
 });
-
-mongoose.connection.on("Disconnected..!", () => {
-  console.log("Mongoose connecrtion is disconnected..!");
+mongoose.connection.on("disconnected", () => {
+  console.log("⚠️ Mongoose disconnected");
 });
 
 process.on("SIGINT", () => {
