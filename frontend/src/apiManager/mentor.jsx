@@ -1,11 +1,11 @@
 import AxiosInstances from ".";
 
 const getAllMentors = () => {
-  return AxiosInstances.get("/mentors"); // ✅ match backend
+  return AxiosInstances.get("/mentor");
 };
 
 const getMentorByUsername = (username) => {
-  return AxiosInstances.get(`/mentor/${username}`);
+  return AxiosInstances.get("/mentor" + username);
 };
 
 const mentorApi = {

@@ -86,7 +86,7 @@ const Home = () => {
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                   Join ElevateHub
                 </button>
 
@@ -110,130 +110,95 @@ const Home = () => {
         </section>
 
         {/* Features Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="container mx-auto px-6 md:px-12">
-            {/* Main Heading */}
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Unlock our Growth Journey with ElevateHub
+        <section
+          className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden"
+          style={{
+            backgroundImage:
+              "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fid%2F1238420946%2Fvector%2Fmentoring-doodle-seamless-pattern-and-line-icons.jpg%3Fs%3D1024x1024%26w%3Dis%26k%3D20%26c%3DoWh8xjERRYrN4QiMfhNY5WiuSgvtPw6yrcQqr2OmfHM%3D&f=1&nofb=1&ipt=7afa999d84aa0fb1647aca36c1241ab7f2cf85fbd03448496a7e299e3648ef09')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div>
+
+          <div className="relative container mx-auto px-6 md:px-12 lg:px-20">
+            {/* Heading */}
+            <div className="text-center max-w-4xl mx-auto mb-20">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+                Empower Your Career with{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  ElevateHub
+                </span>
               </h2>
-              <p className="text-gray-700 text-lg md:text-xl">
-                ElevateHub is more than just a mentorship platform – it’s a
-                community where ambition meets guidance. We connect aspiring
-                professionals and learners with experienced mentors who provide
-                personalized advice, actionable insights, and encouragement to
-                help you reach your goals faster. Join us to unlock your full
-                potential and turn your growth journey into tangible
-                achievements.
+              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
+                Join a vibrant community of learners and professionals. Connect
+                with experienced mentors, gain personalized guidance, and
+                accelerate your journey toward success — one step at a time.
               </p>
             </div>
 
-            {/* Feature Cards */}
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {/* Card 1 */}
-              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Expert Career Guidance
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Get advice from industry experts who have been there and done
-                  that. Tailored guidance ensures your career path is aligned
-                  with your goals.
-                </p>
-                <a
-                  href="#"
-                  className="text-blue-600 font-semibold hover:underline"
+            {/* Cards */}
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  title: "Expert Career Guidance",
+                  desc: "Gain actionable insights from top industry professionals who’ve been where you want to go.",
+                  icon: "💡",
+                },
+                {
+                  title: "Personalized Learning Paths",
+                  desc: "Structured mentorship journeys tailored to your strengths, goals, and growth areas.",
+                  icon: "📚",
+                },
+                {
+                  title: "Affordable & Flexible",
+                  desc: "Choose from flexible plans and learn at your own pace — without financial stress.",
+                  icon: "💸",
+                },
+                {
+                  title: "Network & Collaborate",
+                  desc: "Build long-lasting connections with mentors and peers across industries worldwide.",
+                  icon: "🌐",
+                },
+                {
+                  title: "Track Your Progress",
+                  desc: "Visual dashboards that help you stay accountable and celebrate your milestones.",
+                  icon: "📈",
+                },
+                {
+                  title: "Global Opportunities",
+                  desc: "Access mentorship and learning opportunities from global leaders and innovators.",
+                  icon: "🌍",
+                },
+              ].map((feature, i) => (
+                <div
+                  key={i}
+                  className="group bg-white/90 border border-gray-200 rounded-3xl p-8 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 backdrop-blur-lg"
                 >
-                  Learn More
-                </a>
-              </div>
+                  {/* Icon */}
+                  <div className="w-16 h-16 flex items-center justify-center text-3xl mb-6 rounded-2xl bg-gradient-to-br from-blue-600/10 to-indigo-600/10 text-blue-700 group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
 
-              {/* Card 2 */}
-              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Personalized Learning Paths
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Follow a structured, mentor-driven learning path designed
-                  specifically for your skills, career stage, and aspirations.
-                </p>
-                <a
-                  href="#"
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Learn More
-                </a>
-              </div>
+                  {/* Title */}
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-700 transition">
+                    {feature.title}
+                  </h3>
 
-              {/* Card 3 */}
-              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Affordable and Flexible
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Access premium mentorship at prices that work for you. Learn
-                  at your own pace without breaking your budget.
-                </p>
-                <a
-                  href="#"
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Learn More
-                </a>
-              </div>
+                  {/* Description */}
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {feature.desc}
+                  </p>
 
-              {/* Card 4 */}
-              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Build Valuable Networks
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Connect with like-minded professionals and mentors across
-                  industries to expand your network and open new opportunities.
-                </p>
-                <a
-                  href="#"
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Learn More
-                </a>
-              </div>
-
-              {/* Card 5 */}
-              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Continuous Progress Tracking
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Track your growth and accomplishments over time with our
-                  intuitive progress tracking system. Stay motivated and on
-                  target.
-                </p>
-                <a
-                  href="#"
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Learn More
-                </a>
-              </div>
-
-              {/* Card 6 */}
-              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Global Mentorship Opportunities
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Gain exposure to mentors and opportunities worldwide.
-                  ElevateHub bridges borders to help you grow in a global
-                  context.
-                </p>
-                <a
-                  href="#"
-                  className="text-blue-600 font-semibold hover:underline"
-                >
-                  Learn More
-                </a>
-              </div>
+                  <a
+                    href="#"
+                    className="inline-block text-blue-600 font-semibold hover:text-blue-700 transition"
+                  >
+                    Learn More →
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -473,7 +438,7 @@ const Home = () => {
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                   Get Started
                 </button>
                 <button className="px-6 py-3 bg-gray-200 text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
@@ -495,16 +460,29 @@ const Home = () => {
         </section>
 
         {/* pricing plan section*/}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="container mx-auto px-6 md:px-12 text-center">
-            {/* Heading */}
+        <section
+          className="relative py-24 md:py-32 bg-gray-50 overflow-hidden"
+          style={{
+            backgroundImage:
+              "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthumbs.dreamstime.com%2Fb%2Fmoney-finance-currency-doodle-set-doodle-hand-drawn-icon-set-outline-drawing-dollar-banknotes-coins-money-bag-line-money-357422320.jpg&f=1&nofb=1&ipt=81e74195dc000af177b2a60754be30f2ece92da53404b828d759ed50130cf720')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Overlay for clarity */}
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div>
+
+          {/* Content */}
+          <div className="relative container mx-auto px-6 md:px-12 text-center">
             <div className="max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
                 Flexible Mentorship Plans
               </h2>
-              <p className="text-gray-700 text-lg md:text-xl">
-                Choose a plan that suits your growth journey. Explore flexible
-                and affordable mentorship options designed to help you succeed.
+              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
+                Choose a plan that fits your journey. Whether you're just
+                starting or scaling up your career, our flexible and affordable
+                mentorship options are designed to help you thrive — at your own
+                pace.
               </p>
             </div>
 
@@ -512,12 +490,15 @@ const Home = () => {
             <div>
               <a
                 href="/pricing"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:from-blue-700 hover:to-purple-700 transition duration-300"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300"
               >
                 View Pricing
               </a>
             </div>
           </div>
+
+          {/* Decorative bottom gradient fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
         </section>
 
         {/*FAQ  */}
@@ -616,7 +597,7 @@ const Home = () => {
 
                   {/* Contact Button */}
                   <div className="text-center mt-6">
-                    <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                    <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                       Still have questions? Contact Us!
                     </button>
                   </div>
@@ -627,66 +608,55 @@ const Home = () => {
         </section>
 
         {/* Footer Section */}
-        <footer className="bg-gray-900 text-gray-300 py-12">
-          <div className="container mx-auto px-6 md:px-12">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-10">
+        <footer className="bg-gray-900 text-gray-300 relative overflow-hidden">
+          {/* Decorative gradient shapes */}
+          <div className="absolute -top-20 -left-20 w-64 h-64 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-full mix-blend-multiply opacity-20 blur-3xl animate-pulse sm:w-72 sm:h-72"></div>
+          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-gradient-to-bl from-pink-500 to-indigo-500 rounded-full mix-blend-multiply opacity-20 blur-3xl animate-pulse sm:w-80 sm:h-80"></div>
+
+          <div className="container mx-auto px-6 md:px-12 py-16 relative z-10">
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-10">
               {/* About */}
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-4">
+              <div className="flex-1 min-w-[220px]">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                   Elevate Hub
                 </h3>
-                <p className="text-gray-400 leading-relaxed">
+                <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
                   Empowering individuals through mentorship and guidance to
                   transform ambition into achievement. Join our community and
-                  grow with the support of expert mentors.
+                  grow with expert mentors.
                 </p>
                 {/* Social Icons */}
-                <div className="flex gap-4 mt-6">
-                  <a
-                    href="#"
-                    className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition duration-300"
-                  >
-                    <FaFacebookF className="text-white text-lg" />
-                  </a>
-                  <a
-                    href="#"
-                    className="p-2 bg-gray-800 rounded-full hover:bg-sky-500 transition duration-300"
-                  >
-                    <FaTwitter className="text-white text-lg" />
-                  </a>
-                  <a
-                    href="#"
-                    className="p-2 bg-gray-800 rounded-full hover:bg-blue-700 transition duration-300"
-                  >
-                    <FaLinkedinIn className="text-white text-lg" />
-                  </a>
-                  <a
-                    href="#"
-                    className="p-2 bg-gray-800 rounded-full hover:bg-pink-600 transition duration-300"
-                  >
-                    <FaInstagram className="text-white text-lg" />
-                  </a>
-                  <a
-                    href="#"
-                    className="p-2 bg-gray-800 rounded-full hover:bg-green-600 transition duration-300"
-                  >
-                    <FaGithub className="text-white text-lg" />
-                  </a>
+                <div className="flex gap-3 mt-6 flex-wrap">
+                  {[
+                    FaFacebookF,
+                    FaTwitter,
+                    FaLinkedinIn,
+                    FaInstagram,
+                    FaGithub,
+                  ].map((Icon, idx) => (
+                    <a
+                      key={idx}
+                      href="#"
+                      className="p-3 bg-gray-800 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-600 transition-all duration-300 text-white"
+                    >
+                      <Icon className="text-lg" />
+                    </a>
+                  ))}
                 </div>
               </div>
 
               {/* Quick Links */}
-              <div className="flex-1">
-                <h4 className="text-xl font-semibold text-white mb-4">
+              <div className="flex-1 min-w-[160px]">
+                <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                   Quick Links
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2 text-sm sm:text-base">
                   {["Home", "About", "Mentors", "Pricing", "Contact"].map(
                     (link, idx) => (
                       <li key={idx}>
                         <a
                           href={`/${link.toLowerCase()}`}
-                          className="hover:text-blue-500 transition duration-300"
+                          className="hover:text-indigo-500 transition-colors duration-300"
                         >
                           {link}
                         </a>
@@ -697,11 +667,11 @@ const Home = () => {
               </div>
 
               {/* Resources */}
-              <div className="flex-1">
-                <h4 className="text-xl font-semibold text-white mb-4">
+              <div className="flex-1 min-w-[160px]">
+                <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                   Resources
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2 text-sm sm:text-base">
                   {[
                     "Blog",
                     "FAQs",
@@ -712,7 +682,7 @@ const Home = () => {
                     <li key={idx}>
                       <a
                         href="#"
-                        className="hover:text-blue-500 transition duration-300"
+                        className="hover:text-indigo-500 transition-colors duration-300"
                       >
                         {res}
                       </a>
@@ -722,22 +692,22 @@ const Home = () => {
               </div>
 
               {/* Newsletter */}
-              <div className="flex-1">
-                <h4 className="text-xl font-semibold text-white mb-4">
+              <div className="flex-1 min-w-[220px]">
+                <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4">
                   Subscribe to Newsletter
                 </h4>
-                <p className="text-gray-400 mb-4">
+                <p className="text-gray-400 mb-4 text-sm sm:text-base">
                   Get the latest updates, mentorship tips, and offers.
                 </p>
                 <form className="flex flex-col sm:flex-row gap-3">
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-600 flex-1"
+                    className="px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex-1 text-sm sm:text-base"
                   />
                   <button
                     type="submit"
-                    className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
+                    className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 text-sm sm:text-base"
                   >
                     Subscribe
                   </button>
@@ -746,7 +716,7 @@ const Home = () => {
             </div>
 
             {/* Footer Bottom */}
-            <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
+            <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm sm:text-base">
               &copy; {new Date().getFullYear()} Elevate Hub. All rights
               reserved.
             </div>
