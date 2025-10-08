@@ -488,12 +488,12 @@ const Home = () => {
 
             {/* View Pricing Button */}
             <div>
-              <a
-                href="/pricing"
+              <NavLink
+                to="/pricing"
                 className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300"
               >
                 View Pricing
-              </a>
+              </NavLink>
             </div>
           </div>
 

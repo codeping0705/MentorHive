@@ -68,7 +68,7 @@ const SignUp = () => {
               Fill in the details below to create your account
             </p>
             <p
-              className="text-sm mt-2 text-blue-600 cursor-pointer hover:underline"
+              className="text-med mt-2 text-blue-600 cursor-pointer hover:underline"
               onClick={() => navigate(`/signup/${alternateRole}`)}
             >
               {role === "mentor"

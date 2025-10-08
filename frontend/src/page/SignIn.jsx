@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import auth from "../apiManager/auth"; // your auth API functions
+import auth from "../apiManager/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import toast from "react-hot-toast";
+import useUserStore from "../store/user";
+import { setToken } from "../helper/index";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useUserStore();
 
   const {
     register,
@@ -21,9 +24,11 @@ const SignIn = () => {
     try {
       const response = await auth.signin(data);
       console.log("response", response.data);
-      toast.success("Logged in successfully!");
       reset();
-      navigate("/dashboard"); // redirect after login
+      setUser(response.data.user);
+      setToken(response.data.token);
+      navigate("/"); // redirect after login
+      toast.success("Logged in successfully!");
     } catch (error) {
       console.error(error);
       toast.error("Invalid credentials!");
@@ -118,6 +123,16 @@ const SignIn = () => {
             >
               Sign Up
             </NavLink>
+          </p>
+          <p className="text-sm text-gray-500 text-center mt-3">
+            Become a{" "}
+            <NavLink
+              to="/signup/mentor"
+              className="text-blue-600 font-medium hover:underline"
+            >
+              Mentor
+            </NavLink>{" "}
+            with us
           </p>
         </div>
       </div>
