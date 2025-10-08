@@ -1,13 +1,12 @@
 const Joi = require("joi");
 
 const createServiceSchema = Joi.object({
-  name: Joi.string().optional(),
-  description: Joi.string().optional(),
-  duration: Joi.string().optional(),
-  price: Joi.string().optional(),
-  active: Joi.string().optional(),
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+  duration: Joi.number().required(),
+  price: Joi.number().required(),
 });
 
 module.exports = {
-  updateUserProfileValidation,
+  createServiceSchema,
 };

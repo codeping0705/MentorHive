@@ -4,8 +4,7 @@ const authRoute = require("./auth.route");
 const homeRoute = require("./home.route");
 const mentorRoute = require("./mentor.route");
 const userRoute = require("./user.route");
-
-// const serviceRoute=require("./service.route");
+const serviceRoute=require("./service.route");
 // const paymentRoute=require("./payment.route");
 
 const Routes = [
@@ -26,10 +25,10 @@ const Routes = [
     route: userRoute,
   },
 
-  // {
-  //     path:"/service",
-  //     route:serviceRoute
-  // },
+  {
+      path:"/service",
+      route:serviceRoute
+  },
   // {
   //     path:"/payment",
   //     route:paymentRoute
