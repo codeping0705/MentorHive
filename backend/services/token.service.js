@@ -11,18 +11,15 @@ const generateToken = (userId, expires, secret) => {
   return jwt.sign(payload, secret);
 };
 
-const generateAuthToken = async (user) => {
+const generateAuthToken = (user) => {
+  if (!user._id) throw new Error("User ID is missing for token generation");
+
   const accessTokenExpires = moment().add(
     config.jwt.accessExpirationMinutes,
     "minutes"
   );
 
-  const accessToken = generateToken(
-    user._id,
-    accessTokenExpires,
-    config.jwt.accessToken
-  );
-  return accessToken;
+  return generateToken(user._id, accessTokenExpires, config.jwt.accessSecret);
 };
 
 const generateVerificationToken = async (userId) => {
@@ -30,7 +27,6 @@ const generateVerificationToken = async (userId) => {
     config.jwt.verificationExpirationMinutes,
     "minutes"
   );
-
   const verificationToken = generateToken(
     userId,
     verificationTokenExpires,
@@ -39,12 +35,13 @@ const generateVerificationToken = async (userId) => {
   return verificationToken;
 };
 
-const verifyToken = async (token, secret) => {
-  if (secret === "sccessToken") {
-    return await jwt.verify(token, config.jwt.accessSecret);
-  } else if (secret === "verify") {
-    return await jwt.verify(token, config.verificatonSecret);
+const verifyToken = (token, type) => {
+  if (type === "accessToken") {
+    return jwt.verify(token, config.jwt.accessSecret);
+  } else if (type === "verify") {
+    return jwt.verify(token, config.jwt.verificationSecret);
   }
+  throw new Error("Invalid token type");
 };
 
-module.exports = { generateAuthToken, generateVerificationToken, verifyToken };
+module.exports = { generateAuthToken, verifyToken, generateVerificationToken };
