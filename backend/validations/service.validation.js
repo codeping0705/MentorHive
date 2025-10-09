@@ -5,6 +5,7 @@ const createServiceSchema = Joi.object({
   description: Joi.string().required(),
   duration: Joi.number().required(),
   price: Joi.number().required(),
+  active: Joi.string().optional(),
 });
 
 module.exports = {

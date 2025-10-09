@@ -1,18 +1,22 @@
 const Joi = require("joi");
 
-const updateUserProfileValidation = Joi.object({
-  tags: Joi.array().items(Joi.string()).optional(),
-  title: Joi.string().optional(),
-  bio: Joi.string().optional(),
-  social: Joi.object({
-    linkedin: Joi.string().optional(),
-    github: Joi.string().optional(),
-    twitter: Joi.string().optional(),
-    facebook: Joi.string().optional(),
-    instagram: Joi.string().optional(),
-  }).optional(),
-  college: Joi.string().optional(),
-});
+const updateUserProfileValidation = {
+  body: Joi.object().keys({
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    title: Joi.string().allow("").optional(),
+    tags: Joi.array().items(Joi.string()),
+    bio: Joi.string().allow(""),
+    college: Joi.string().allow(""),
+    social: Joi.object({
+      linkedin: Joi.string().allow("").uri(),
+      github: Joi.string().allow("").uri(),
+      instagram: Joi.string().allow("").uri(),
+      facebook: Joi.string().allow("").uri(),
+      twitter: Joi.string().allow("").uri(),
+    }),
+  }),
+};
 
 module.exports = {
   updateUserProfileValidation,

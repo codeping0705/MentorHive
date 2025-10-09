@@ -9,6 +9,15 @@ const getAllMentors = async () => {
     throw error;
   }
 };
+const getMentorById = async (id) => {
+  try {
+    const mentor = await UserModel.findOne({ _id: id, role: "mentor" });
+    return mentor;
+  } catch (error) {
+    console.error("❌ Error in mentor.service.getMentorById:", error);
+    throw error;
+  }
+};
 
 const getMentorByUsername = async (username) => {
   try {
@@ -24,4 +33,5 @@ const getMentorByUsername = async (username) => {
 module.exports = {
   getAllMentors,
   getMentorByUsername,
+  getMentorById,
 };

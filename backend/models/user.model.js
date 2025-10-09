@@ -82,19 +82,21 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-// Check if password matches
+// Instance method to compare passwords
 userSchema.methods.isPasswordMatch = async function (password) {
-  if (!password || !this.password) return false;
   return bcrypt.compare(password, this.password);
 };
 
-// Hash password before saving
+// Pre-save hook to hash password
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 8);
   }
   next();
 });
+
+// Index for email field
+// userSchema.index({ email: 1 });
 
 const UserModel = model("User", userSchema);
 module.exports = UserModel;

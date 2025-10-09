@@ -2,18 +2,19 @@ const express = require("express");
 const userController = require("../../controllers/user.controller");
 const authMiddleware = require("../../middleware/auth");
 const asyncHandler = require("../../helper/asyncHandler");
-const validate = require("../../middleware/validate"); // fix import
-const { uploadPhoto } = require("../../middleware/upload");
-const { updateUserProfileValidation } = require("../../validations/user.validation");
+const validate = require("../../middleware/validate");
+const {
+  updateUserProfileValidation,
+} = require("../../validations/service.validation");
 
 const router = express.Router();
 
 router.post(
   "/upload-photo",
   authMiddleware.protect,
-  uploadPhoto.single("photo"),
   asyncHandler(userController.uploadPhoto)
 );
+
 
 router.get("/", authMiddleware.protect, asyncHandler(userController.getUser));
 

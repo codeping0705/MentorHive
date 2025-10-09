@@ -15,12 +15,12 @@ const loginUserWithEmailAndPassword = async (email, password) => {
 
   const user = await UserModel.findOne({ email }).select("+password");
   if (!user) {
-    throw new ApiError(httpStatus.unauthorized, "Incorrect email or password");
+    throw new ApiError(httpStatus.unAuthorized, "Incorrect email or password");
   }
 
   const isMatch = await user.isPasswordMatch(password);
   if (!isMatch) {
-    throw new ApiError(httpStatus.unauthorized, "Incorrect email or password");
+    throw new ApiError(httpStatus.unAuthorized, "Incorrect email or password");
   }
 
   return user;

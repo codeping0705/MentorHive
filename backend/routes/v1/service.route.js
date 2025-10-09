@@ -1,15 +1,16 @@
 const express = require("express");
 const serviceController = require("../../controllers/service.controller");
-const validate  = require("../../middleware/validate");
+const validate = require("../../middleware/validate");
 const { createServiceSchema } = require("../../validations/service.validation");
-const asyncHandler = require("../../helper/asyncHandler");
 const authMiddleware = require("../../middleware/auth");
+const asyncHandler = require("../../helper/asyncHandler");
 
 const router = express.Router();
 
 // Create service
 router.post(
   "/",
+  authMiddleware.protect,
   authMiddleware.restrictTo("mentor"),
   validate(createServiceSchema),
   asyncHandler(serviceController.createService)
@@ -18,14 +19,16 @@ router.post(
 // Update service
 router.put(
   "/:serviceId",
+  authMiddleware.protect,
   authMiddleware.restrictTo("mentor"),
   validate(createServiceSchema),
   asyncHandler(serviceController.updateService)
 );
 
-// Get all services by mentor
+// Get services for mentor
 router.get(
   "/",
+  authMiddleware.protect,
   authMiddleware.restrictTo("mentor"),
   asyncHandler(serviceController.getServiceByMentor)
 );
@@ -33,6 +36,7 @@ router.get(
 // Get service by ID
 router.get(
   "/:serviceId",
+  authMiddleware.protect,
   authMiddleware.restrictTo("mentor"),
   asyncHandler(serviceController.getServiceById)
 );

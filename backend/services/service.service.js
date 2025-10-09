@@ -1,7 +1,7 @@
 const ServiceModel = require("../models/service.model");
 
-const createService = async (serviceData) => {
-  return await ServiceModel.create(serviceData);
+const createService = async (servideData) => {
+  return await ServiceModel.create(servideData);
 };
 
 const updateService = async (serviceId, mentorId, updateData) => {
@@ -21,8 +21,8 @@ const getServiceById = async (serviceId) => {
 };
 
 module.exports = {
-  getServiceById,
-  getServiceByMentor,
-  updateService,
   createService,
+  updateService,
+  getServiceByMentor,
+  getServiceById,
 };

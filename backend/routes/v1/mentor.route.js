@@ -1,16 +1,10 @@
-const express = require("express");
-const mentorController = require("../../controllers/mentor.controller");
-const asyncHandler = require("../../helper/asyncHandler");
+const express=require('express');
+const mentorController =require("../../controllers/mentor.controller");
+const asyncHandler=require("../../helper/asyncHandler");
 
-const router = express.Router();
+const router=express.Router();
 
-// GET /v1/mentor → all mentors
-router.get("/", asyncHandler(mentorController.getAllMentors));
+router.get("/",asyncHandler(mentorController.getAllMentors))
+router.get("/:username",asyncHandler(mentorController.getMentorinfoByUsername))
 
-// GET /v1/mentor/:username → mentor by username
-router.get(
-  "/:username",
-  asyncHandler(mentorController.getMentorsInfoByUsername)
-);
-
-module.exports = router;
+module.exports=router;
