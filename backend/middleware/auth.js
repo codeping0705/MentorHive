@@ -6,54 +6,41 @@ const httpStatus = require("../utils/httpStatus");
 const protect = async (req, res, next) => {
   let token;
 
-  // Extract token from Authorization header
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
+  // Get token from Authorization header
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
   }
 
   if (!token) {
     return next(
-      new ApiError(
-        httpStatus.unAuthorized,
-        "You are not logged in! Please log in first."
-      )
+      new ApiError(httpStatus.unAuthorized, "You are not logged in! Please log in first.")
     );
   }
 
   try {
-    // ✅ FIXED: Use jwt.verify instead of jwt.verifyToken
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // Verify token using JWT_SECRET
+    const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 
     const currentUser = await getUserById(decoded._id);
     if (!currentUser) {
       return next(
-        new ApiError(
-          httpStatus.unAuthorized,
-          "The user belonging to this token no longer exists."
-        )
+        new ApiError(httpStatus.unAuthorized, "The user belonging to this token no longer exists.")
       );
     }
 
-    req.user = currentUser;
+    req.user = currentUser; // Attach user to request
     next();
-  } catch (e) {
-    console.error("JWT verification failed:", e.message);
-    return next(
-      new ApiError(httpStatus.unAuthorized, "You are not authorized.")
-    );
+  } catch (err) {
+    console.error("JWT verification failed:", err.message);
+    return next(new ApiError(httpStatus.unAuthorized, "You are not authorized."));
   }
 };
 
-const restrictTo = (...roles) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return next(new ApiError(httpStatus.forbidden, "Access denied."));
-    }
-    next();
-  };
+const restrictTo = (...roles) => (req, res, next) => {
+  if (!roles.includes(req.user.role)) {
+    return next(new ApiError(httpStatus.forbidden, "Access denied."));
+  }
+  next();
 };
 
 module.exports = { protect, restrictTo };
