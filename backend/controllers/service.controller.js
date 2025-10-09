@@ -1,46 +1,32 @@
 const ServiceModel = require("../models/service.model");
-const serviceService = require("../services/service.service");
 const httpStatus = require("../utils/httpStatus");
-const ApiError = require("../helper/ApiError");
+const ApiError = require("../helper/apiError");
+const serviceService = require("../services/service.service");
 
-const createService = async (req, res) => {
+const createService = async (req, res, next) => {
   try {
     const mentorId = req.user._id;
-    console.log("req.user:", req.user);
-
     const { name, description, duration, price } = req.body;
 
-    // Validate mandatory fields (redundant if using validate middleware)
-    if (!name || !description || !duration || !price) {
-      return res.status(httpStatus.badRequest).json({
-        success: false,
-        message: "All fields are required (name, description, duration, price)",
-      });
-    }
-
     const service = await serviceService.createService({
-      mentorId,
+      mentor: mentorId,
       name,
       description,
       duration,
       price,
     });
+
     res.status(httpStatus.created).json({
       success: true,
-      message: "Service Created!",
+      message: "Service created successfully",
       service,
     });
   } catch (error) {
-    console.error("Create service error:", error);
-    res.status(httpStatus.internalServerError).json({
-      success: false,
-      message: "Failed to create service",
-      error: error.message,
-    });
+    next(error);  // Pass the error to the global error handler
   }
 };
 
-const updateService = async (req, res) => {
+const updateService = async (req, res, next) => {
   try {
     const serviceId = req.params.serviceId;
     const mentorId = req.user._id;
@@ -53,7 +39,10 @@ const updateService = async (req, res) => {
     );
 
     if (!updatedService) {
-      throw new ApiError(httpStatus.notFound, "Service not found");
+      throw new ApiError(
+        httpStatus.notFound,
+        "Service not found"
+      );
     }
 
     res.status(httpStatus.ok).json({
@@ -62,15 +51,11 @@ const updateService = async (req, res) => {
       service: updatedService,
     });
   } catch (error) {
-    console.error("Update service error:", error);
-    res.status(error.statusCode || httpStatus.internalServerError).json({
-      success: false,
-      message: error.message || "Failed to update service",
-    });
+    next(error);  // Pass the error to the global error handler
   }
 };
 
-const getServiceByMentor = async (req, res) => {
+const getServiceByMentor = async (req, res, next) => {
   try {
     const mentorId = req.user._id;
     const services = await serviceService.getServiceByMentor(mentorId);
@@ -87,39 +72,19 @@ const getServiceByMentor = async (req, res) => {
       services,
     });
   } catch (error) {
-    console.error("Get services error:", error);
-    res.status(httpStatus.internalServerError).json({
-      success: false,
-      message: "Failed to fetch services",
-      error: error.message,
-    });
+    next(error);  // Pass the error to the global error handler
   }
 };
 
-const getServiceById = async (req, res) => {
-  try {
-    const serviceId = req.params.serviceId;
-    const service = await serviceService.getServiceById(serviceId);
 
-    if (!service) {
-      return res.status(httpStatus.notFound).json({
-        success: false,
-        message: "Service not found",
-      });
-    }
+const getServiceById = async (req, res, next) => {
+  const serviceId = req.params.serviceId;
+  const service = await serviceService.getServiceById(serviceId);
 
-    res.status(httpStatus.ok).json({
-      success: true,
-      service,
-    });
-  } catch (error) {
-    console.error("Get service by id error:", error);
-    res.status(httpStatus.internalServerError).json({
-      success: false,
-      message: "Failed to fetch service",
-      error: error.message,
-    });
-  }
+  res.status(httpStatus.ok).json({
+    success: true,
+    service,
+  });
 };
 
 module.exports = {

@@ -8,7 +8,7 @@ const updateService = async (serviceId, mentorId, updateData) => {
   return await ServiceModel.findOneAndUpdate(
     { _id: serviceId, mentor: mentorId },
     updateData,
-    { new: true }
+    { new: true, runValidators: true  }
   );
 };
 
