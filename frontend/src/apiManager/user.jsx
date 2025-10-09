@@ -8,10 +8,10 @@ const getUser = async () => {
   return await AxiosInstances.get("/user");
 };
 
-const updatedUser = async (data) => {
+const updateUser = async (data) => {
   return await AxiosInstances.put("/user/update-profile", data);
 };
 
-const userAPI = { updatedUser, uploadImage, getUser };
+const userAPI = { updateUser, uploadImage, getUser };
 
 export default userAPI;

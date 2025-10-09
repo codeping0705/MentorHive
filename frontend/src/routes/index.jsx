@@ -7,6 +7,7 @@ import Pricing from "../page/pricing/Pricing";
 import Service from "../page/dashboard/Service";
 import Payment from "../page/dashboard/Payment";
 import Booking from "../page/dashboard/Bookings";
+import Schedule from "../page/dashboard/Schedule";
 
 const routes = [
   { path: "/", element: <Home />, isProtected: false },
@@ -17,5 +18,8 @@ const routes = [
   { path: "/dashboard/services", element: <Service />, isProtected: true },
   { path: "/dashboard/bookings", element: <Booking />, isProtected: true },
   { path: "/dashboard/payment", element: <Payment />, isProtected: true },
+  { path: "/dashboard/schedule", element: <Schedule />, isProtected: true },
+
 ];
 export default routes;
+

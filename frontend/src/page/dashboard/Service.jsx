@@ -1,48 +1,53 @@
 import React, { useEffect, useState } from "react";
-import Dashboard from "./Dashboard";
-import { Modal, Form, Input, InputNumber, Button, Spin } from "antd";
+import Dashboard from "./dashboard";
+import ServiceCard from "../../components/ServiceCard";
 import service from "../../apiManager/service";
+import { Button, Input, Modal, Form, Spin } from "antd";
 import toast from "react-hot-toast";
-import ServiceCard from "../../components/Servicecard";
+import { FiPlus } from "react-icons/fi";
+import useUserStore from "../../store/user"; // Adjust path
 
-const Service = () => {
+const Services = () => {
+  const { user } = useUserStore(); // Get logged-in mentor
+  const mentorId = user?._id;
+
+  const [services, setServices] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingService, setEditingService] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [services, setServices] = useState([]);
-  const [fetching, setFetching] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchServices = async () => {
-      setFetching(true);
+      if (!mentorId) {
+        toast.error("Mentor ID not found. Please login again.");
+        return;
+      }
+
+      setLoading(true);
       try {
-        const mentorId = ""; // TODO: replace with actual mentorId
-        if (!mentorId) {
-          toast.error("Mentor ID not found");
-          return;
-        }
         const response = await service.getServicesByMentor(mentorId);
-        setServices(response.data.services);
+        setServices(response?.data?.services || []);
       } catch (error) {
-        console.error(error);
-        toast.error("Failed to fetch services");
+        console.error("Error fetching mentor services:", error);
+        toast.error("Failed to load services.");
       } finally {
-        setFetching(false);
+        setLoading(false);
       }
     };
+
     fetchServices();
-  }, []);
+  }, [mentorId]);
 
   const handleCreateService = async (values) => {
     setLoading(true);
     try {
       const response = await service.createService(values);
-      setServices((prev) => [...prev, response.data.service]);
+      setServices((prev) => [...prev, response?.data?.service]);
       setIsModalVisible(false);
-      toast.success("Service created successfully");
+      toast.success("Service created successfully!");
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to create service");
+      console.error("Error creating service:", error);
+      toast.error("Failed to create service.");
     } finally {
       setLoading(false);
     }
@@ -59,52 +64,35 @@ const Service = () => {
       );
       setIsModalVisible(false);
       setEditingService(null);
-      toast.success("Service updated successfully");
+      toast.success("Service updated successfully!");
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to update service");
+      console.error("Error editing service:", error);
+      toast.error("Failed to update service.");
     } finally {
       setLoading(false);
     }
   };
 
+  const handleEdit = (service) => {
+    setEditingService(service);
+    setIsModalVisible(true);
+  };
+
   return (
     <Dashboard>
-      <div className="p-6 bg-gray-50 min-h-screen">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">Services</h1>
-          <button
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-semibold">Your Services</h2>
+          <Button
+            type="primary"
+            className="!rounded"
             onClick={() => setIsModalVisible(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded shadow transition"
           >
-            Add New +
-          </button>
+            <FiPlus className="inline-block mr-2" /> Add New
+          </Button>
         </div>
 
-        {/* Services List */}
-        <Spin spinning={fetching}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.length === 0 && !fetching ? (
-              <p className="text-gray-500 col-span-full text-center">
-                No services available.
-              </p>
-            ) : (
-              services.map((service) => (
-                <ServiceCard
-                  key={service._id}
-                  service={service}
-                  onEdit={() => {
-                    setEditingService(service);
-                    setIsModalVisible(true);
-                  }}
-                />
-              ))
-            )}
-          </div>
-        </Spin>
-
-        {/* Modal Form */}
+        {/* Modal for creating/editing */}
         <Modal
           title={editingService ? "Edit Service" : "Create New Service"}
           open={isModalVisible}
@@ -113,68 +101,60 @@ const Service = () => {
             setEditingService(null);
           }}
           footer={null}
-          className="rounded-xl"
         >
           <Form
-            layout="vertical"
             onFinish={editingService ? handleEditService : handleCreateService}
             initialValues={editingService}
+            layout="vertical"
           >
             <Form.Item
               label="Name"
               name="name"
-              rules={[{ required: true, message: "Please enter service name" }]}
+              rules={[{ required: true, message: "Enter service name!" }]}
             >
-              <Input placeholder="Service Name" className="rounded-md" />
+              <Input />
             </Form.Item>
-
             <Form.Item
               label="Description"
               name="description"
-              rules={[{ required: true, message: "Please enter description" }]}
+              rules={[{ required: true, message: "Enter description!" }]}
             >
-              <Input placeholder="Service Description" className="rounded-md" />
+              <Input.TextArea />
             </Form.Item>
-
             <Form.Item
               label="Duration (minutes)"
               name="duration"
-              rules={[{ required: true, message: "Please enter duration" }]}
+              rules={[{ required: true, message: "Enter duration!" }]}
             >
-              <InputNumber
-                className="w-full rounded-md"
-                placeholder="Duration"
-                min={1}
-              />
+              <Input type="number" />
             </Form.Item>
-
             <Form.Item
               label="Price (₹)"
               name="price"
-              rules={[{ required: true, message: "Please enter price" }]}
+              rules={[{ required: true, message: "Enter price!" }]}
             >
-              <InputNumber
-                className="w-full rounded-md"
-                placeholder="Price"
-                min={0}
-              />
+              <Input type="number" />
             </Form.Item>
-
-            <Form.Item>
-              <Button
-                type="primary"
-                htmlType="submit"
-                loading={loading}
-                className="w-full bg-blue-600 hover:bg-blue-700 transition"
-              >
-                {editingService ? "Save Changes" : "Create Service"}
-              </Button>
-            </Form.Item>
+            <Button type="primary" htmlType="submit" className="w-full">
+              {editingService ? "Save Changes" : "Create Service"}
+            </Button>
           </Form>
         </Modal>
+
+        <Spin spinning={loading}>
+          <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
+            {services?.map((service) => (
+              <ServiceCard
+                key={service._id}
+                service={service}
+                onEdit={() => handleEdit(service)}
+              />
+            ))}
+          </div>
+        </Spin>
       </div>
     </Dashboard>
   );
 };
 
-export default Service;
+export default Services;
