@@ -16,7 +16,7 @@ import {
   AiFillInstagram 
 } from "react-icons/ai";
 
-import Dashboard from "./dashboard";
+import Dashboard from "../dashboard/Dashboard";
 import useUserStore from "../../store/user";
 import userAPI from "../../apiManager/user";
 

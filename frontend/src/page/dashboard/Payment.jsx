@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Button, Input, Space } from "antd";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
-import Dashboard from "./Dashboard"; // make sure this matches the file
+import Dashboard from "../dashboard/Dashboard"; // make sure this matches the file
 import * as XLSX from "xlsx";
 
 const Payment = () => {
