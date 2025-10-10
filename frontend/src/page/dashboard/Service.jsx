@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Dashboard from "./dashboard";
+import Dashboard from "../dashboard/Dashboard";
 import ServiceCard from "../../components/ServiceCard";
 import service from "../../apiManager/service";
 import { Button, Input, Modal, Form, Spin } from "antd";
