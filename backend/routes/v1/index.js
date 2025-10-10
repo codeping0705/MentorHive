@@ -5,6 +5,7 @@ const homeRoute = require("./home.route");
 const mentorRoute = require("./mentor.route");
 const userRoute = require("./user.route");
 const serviceRoute = require("./service.route");
+const scheduleRoute = require("./schedule.route");
 // const paymentRoute = require("./payment.route");
 
 const Routes = [
@@ -28,6 +29,10 @@ const Routes = [
   {
     path: "/service",
     route: serviceRoute,
+  },
+  {
+    path: "/schedule",
+    route: scheduleRoute,
   },
   // {
   //   path: "/payment",

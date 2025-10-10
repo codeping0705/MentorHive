@@ -4,76 +4,84 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
   {
     photoUrl: {
-      type: Schema.Types.String,
+      type: String,
       default: "",
     },
     name: {
-      type: Schema.Types.String,
+      type: String,
       required: true,
       trim: true,
     },
     username: {
-      type: Schema.Types.String,
+      type: String,
       required: true,
       trim: true,
       unique: true,
     },
     email: {
-      type: Schema.Types.String,
+      type: String,
       unique: true,
       required: true,
       trim: true,
     },
     password: {
-      type: Schema.Types.String,
+      type: String,
       required: true,
       select: false,
     },
     verified: {
-      type: Schema.Types.Boolean,
+      type: Boolean,
       default: false,
     },
     role: {
-      type: Schema.Types.String,
+      type: String,
       enum: ["mentor", "student"],
-      default: null, // Initially null, can be set later
+      default: null,
     },
     profile: {
       tags: {
-        type: [Schema.Types.String],
+        type: [String],
         default: [],
       },
       title: {
-        type: Schema.Types.String,
+        type: String,
         default: "",
       },
       bio: {
-        type: Schema.Types.String,
+        type: String,
         default: "",
       },
-      college: {
-        type: Schema.Types.String,
+      company: {
+        type: String,
         default: "",
+      },
+      location: {
+        type: String,
+        default: "",
+      },
+      experience: {
+        type: Number,
+        default: 0,
       },
       social: {
         linkedin: {
-          type: Schema.Types.String,
+          type: String,
           default: "",
         },
         github: {
-          type: Schema.Types.String,
+          type: String,
           default: "",
         },
         twitter: {
-          type: Schema.Types.String,
+          type: String,
           default: "",
         },
         facebook: {
-          type: Schema.Types.String,
+          type: String,
           default: "",
         },
         instagram: {
-          type: Schema.Types.String,
+          type: String,
           default: "",
         },
       },
@@ -96,7 +104,7 @@ userSchema.pre("save", async function (next) {
 });
 
 // Index for email field
-// userSchema.index({ email: 1 });
+userSchema.index({ email: 1 });
 
 const UserModel = model("User", userSchema);
 module.exports = UserModel;

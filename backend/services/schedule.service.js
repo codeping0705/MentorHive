@@ -1,21 +1,13 @@
 const ScheduleModel = require("../models/schedule.model");
 
-const createSchedule = async (scheduleData) => {
-  return await ScheduleModel.create(scheduleData);
+const createSchedule = async (data) => {
+  return await ScheduleModel.create(data);
 };
 
-const getScheduleByMentor = async (mentorId) => {
+const getSchedulesByMentor = async (mentorId) => {
   return await ScheduleModel.find({ mentor: mentorId })
-    .populate("mentee", "name email") // populate mentee info
-    .sort({ date: 1, time: 1 });
+    .populate("student", "name email") // changed
+    .populate("service", "serviceName price");
 };
 
-const updateSchedule = async (scheduleId, updateData) => {
-  return await ScheduleModel.findByIdAndUpdate(scheduleId, updateData, { new: true });
-};
-
-module.exports = {
-  createSchedule,
-  getScheduleByMentor,
-  updateSchedule,
-};
+module.exports = { createSchedule, getSchedulesByMentor };

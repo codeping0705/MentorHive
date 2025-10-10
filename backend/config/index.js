@@ -5,7 +5,7 @@ module.exports = {
   DB_URL: process.env.DB_URL,
   PREFIX: process.env.PREFIX || "/v1",
   jwt: {
-    accessSecret: process.env.JWT_ACCESS_SECRET || "random-access-key",
+    accessSecret: process.env.JWT_ACCESS_SECRET || "random-jwt-secret-key",
     accessExpirationMinutes: process.env.JWT_ACCESS_EXPIRATION_MINUTES || 30,
     verificationSecret: process.env.JWT_VERIFICATION_SECRET || "random-secret",
     verificationExpirationMinutes: process.env.JWT_VERIFICATION_MINUTES || 5,

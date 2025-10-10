@@ -1,60 +1,24 @@
 const scheduleService = require("../services/schedule.service");
+const ApiError = require("../helper/apiError");
 const httpStatus = require("../utils/httpStatus");
 
 const createSchedule = async (req, res, next) => {
   try {
-    const mentorId = req.user._id;
-    const { mentee, date, time, topic } = req.body;
-
-    const schedule = await scheduleService.createSchedule({
-      mentor: mentorId,
-      mentee,
-      date,
-      time,
-      topic,
-    });
-
-    res.status(httpStatus.created).json({
-      success: true,
-      message: "Meeting scheduled successfully!",
-      schedule,
-    });
-  } catch (error) {
-    next(error);
+    const data = { ...req.body, mentor: req.user._id }; // assign mentor from logged-in user
+    const schedule = await scheduleService.createSchedule(data);
+    res.status(201).json({ schedule });
+  } catch (err) {
+    next(new ApiError(httpStatus.badRequest, err.message));
   }
 };
 
-const getScheduleByMentor = async (req, res, next) => {
+const getSchedulesByMentor = async (req, res, next) => {
   try {
-    const mentorId = req.user._id;
-    const schedules = await scheduleService.getScheduleByMentor(mentorId);
-
-    res.status(httpStatus.ok).json({
-      success: true,
-      schedules,
-    });
-  } catch (error) {
-    next(error);
+    const schedules = await scheduleService.getSchedulesByMentor(req.user._id);
+    res.status(200).json({ schedules });
+  } catch (err) {
+    next(new ApiError(httpStatus.badRequest, err.message));
   }
 };
 
-const updateSchedule = async (req, res, next) => {
-  try {
-    const scheduleId = req.params.scheduleId;
-    const updatedSchedule = await scheduleService.updateSchedule(scheduleId, req.body);
-
-    res.status(httpStatus.ok).json({
-      success: true,
-      message: "Schedule updated successfully",
-      schedule: updatedSchedule,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-module.exports = {
-  createSchedule,
-  getScheduleByMentor,
-  updateSchedule,
-};
+module.exports = { createSchedule, getSchedulesByMentor };

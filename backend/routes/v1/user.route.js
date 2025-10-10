@@ -5,24 +5,22 @@ const asyncHandler = require("../../helper/asyncHandler");
 const validate = require("../../middleware/validate");
 const {
   updateUserProfileValidation,
-} = require("../../validations/service.validation");
-
-const router = express.Router();
-
-router.post(
-  "/upload-photo",
-  authMiddleware.protect,
-  asyncHandler(userController.uploadPhoto)
-);
+} = require("../../validations/user.validation");
 
 
-router.get("/", authMiddleware.protect, asyncHandler(userController.getUser));
+const router=express.Router();
 
-router.put(
-  "/update-profile",
-  authMiddleware.protect,
-  validate(updateUserProfileValidation),
-  asyncHandler(userController.updateUserProfile)
-);
+router.post("/upload-photo",
+    authMiddleware.protect,
+    asyncHandler(userController.uploadPhoto)
+)
 
-module.exports = router;
+router.get("/",authMiddleware.protect,asyncHandler(userController.getUser));
+
+router.put("/update-profile",
+    authMiddleware.protect,
+    validate(updateUserProfileValidation),
+    asyncHandler(userController.updateUserProfile)
+)
+
+module.exports=router;
