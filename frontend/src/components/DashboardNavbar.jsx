@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { removeToken } from "../helper";
 import useUserStore from "../store/user";
 import { FiLogOut, FiMenu } from "react-icons/fi";
+import { CiSettings } from "react-icons/ci";
 
 const DashboardNavbar = ({ onMenuToggle }) => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const DashboardNavbar = ({ onMenuToggle }) => {
         {/* Logout Button */}
         <button
           onClick={onButtonClick}
-          className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg shadow-sm hover:bg-red-600 transition-all duration-200 text-sm sm:text-base"
+          className="flex items-center gap-2 p-1 bg-red-500 text-white rounded-lg shadow-sm hover:bg-red-600 transition-all duration-200 text-sm sm:text-base"
         >
           <span>Logout</span>
           <FiLogOut className="text-lg" />

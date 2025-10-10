@@ -35,7 +35,7 @@ const Home = () => {
                 first.
               </p>
               <div className="mt-8 flex justify-center md:justify-start gap-4 flex-wrap">
-                <NavLink to="">
+                <NavLink to="/pricing">
                   <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transition duration-300 transform hover:-translate-y-1">
                     Match with a Mentor
                   </button>
@@ -87,9 +87,11 @@ const Home = () => {
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
-                  Join MentorHive
-                </button>
+                <NavLink to="/pricing">
+                  <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
+                    Join MentorHive
+                  </button>
+                </NavLink>
 
                 <a
                   href="#"

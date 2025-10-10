@@ -30,7 +30,7 @@ const Footer = () => {
               <img
                 src="https://img.icons8.com/?size=40&id=50532&format=png"
                 alt="MentorHive logo"
-                className="w-10 h-10"
+                className="w-7 h-7"
               />
               <h3 className="text-2xl sm:text-3xl font-bold text-white">
                 MentorHive
