@@ -29,9 +29,14 @@ const DashboardNavbar = ({ onMenuToggle }) => {
 
           {/* Logo */}
           <NavLink to="/" className="flex items-center gap-2">
-            <p className="text-2xl sm:text-3xl font-extrabold tracking-wide text-blue-600 hover:text-blue-700 transition-colors">
-              Elevate Hub
-            </p>
+            <img
+              src="https://img.icons8.com/?size=40&id=50532&format=png"
+              alt="Logo"
+              className="w-8 h-8"
+            />
+            <span className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+              MentorHive
+            </span>
           </NavLink>
         </div>
 

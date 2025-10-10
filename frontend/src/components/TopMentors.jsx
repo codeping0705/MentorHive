@@ -61,7 +61,7 @@ const TopMentors = () => {
   }
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-gray-100 via-white to-gray-50">
+    <section className="relative py-20 bg-gray-100 rounded-2xl">
       <div className="container mx-auto px-6 md:px-12 text-center">
         {/* Section Header */}
         <div className="max-w-2xl mx-auto mb-12">

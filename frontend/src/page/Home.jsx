@@ -11,6 +11,7 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import TopMentors from "../components/TopMentors.jsx";
+import Footer from "../components/Footer.jsx";
 
 const Home = () => {
   return (
@@ -25,7 +26,7 @@ const Home = () => {
             <div className="flex-1 text-center md:text-left z-10">
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  Elevate Hub
+                  MentorHive
                 </span>
                 Transform Ambition Into Achievement
               </h1>
@@ -73,10 +74,10 @@ const Home = () => {
             {/* Text */}
             <div className="flex-1 text-center md:text-left">
               <h4 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Elevate Your Career with Elevate Hub
+                Elevate Your Career with MentorHive
               </h4>
               <p className="text-gray-700 text-lg mb-6">
-                <span className="font-semibold text-blue-600">Elevate Hub</span>{" "}
+                <span className="font-semibold text-blue-600">MentorHive</span>{" "}
                 is a mentorship platform dedicated to helping individuals
                 achieve their full potential. We connect learners,
                 professionals, and aspiring achievers with experienced mentors
@@ -87,7 +88,7 @@ const Home = () => {
 
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
-                  Join ElevateHub
+                  Join MentorHive
                 </button>
 
                 <a
@@ -128,7 +129,7 @@ const Home = () => {
               <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
                 Empower Your Career with{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  ElevateHub
+                  MentorHive
                 </span>
               </h2>
               <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
@@ -209,7 +210,7 @@ const Home = () => {
             {/* Heading */}
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Unlock Your Potential with ElevateHub
+                Unlock Your Potential with MentorHive
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
                 Follow these steps to make the most of our mentorship platform
@@ -352,7 +353,7 @@ const Home = () => {
 
         {/*  Mentorship Fields Selection section*/}
         <section className="py-16 md:py-24 bg-gray-50">
-          <div className="container mx-auto px-6 md:px-12 text-center">
+          <div className="container bg-blue-50 rounded-2xl p-8 mx-auto px-6 md:px-12 text-center">
             {/* Heading */}
             <div className="mb-12 max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
@@ -421,14 +422,14 @@ const Home = () => {
         </section>
 
         {/* get started section */}
-        <section className="bg-gray-50 py-16 md:py-24">
-          <div className="container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <section className="bg-gray-50 px-5 py-16 md:py-24 ">
+          <div className="container mx-auto p-5 bg-blue-50 rounded-2xl px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
                 Unlock Your <span className="text-blue-600">Potential</span>{" "}
                 with
-                <span className="text-purple-600"> ElevateHub</span>
+                <span className="text-purple-600"> MentorHive</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-700 mb-8">
                 Elevate your career and personal growth with the right
@@ -490,7 +491,7 @@ const Home = () => {
             <div>
               <NavLink
                 to="/pricing"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text- font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300"
               >
                 View Pricing
               </NavLink>
@@ -506,7 +507,7 @@ const Home = () => {
           <div className="container mx-auto px-6 md:px-12">
             {/* Heading */}
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
                 Got Questions? Find Us Here!
               </h2>
               <p className="text-gray-700 text-lg md:text-xl">
@@ -532,16 +533,16 @@ const Home = () => {
               {/* FAQ Section */}
               <div className="flex-1 max-w-full">
                 <div className="max-w-4xl mx-auto space-y-6">
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center md:text-left">
+                  <h3 className="text-3xl md:text-3xl font-bold text-gray-900 mb-6 text-center md:text-left">
                     Frequently Asked Questions
                   </h3>
 
                   {/* FAQ Items */}
                   {[
                     {
-                      question: "What is ElevateHub?",
+                      question: "What is MentorHive?",
                       answer:
-                        "ElevateHub is a mentorship platform that connects learners, professionals, and aspiring achievers with experienced mentors to guide, inspire, and empower growth.",
+                        "MentorHive is a mentorship platform that connects learners, professionals, and aspiring achievers with experienced mentors to guide, inspire, and empower growth.",
                     },
                     {
                       question: "How do I match with a mentor?",
@@ -551,12 +552,12 @@ const Home = () => {
                     {
                       question: "Is mentorship flexible and affordable?",
                       answer:
-                        "Yes! Mentorship sessions are flexible, and ElevateHub provides affordable plans so that guidance is accessible without financial stress.",
+                        "Yes! Mentorship sessions are flexible, and MentorHive provides affordable plans so that guidance is accessible without financial stress.",
                     },
                     {
                       question: "Can I track my progress?",
                       answer:
-                        "ElevateHub offers tools to track your progress with your mentor, so you can monitor growth, set milestones, and celebrate achievements along the way.",
+                        "MentorHive offers tools to track your progress with your mentor, so you can monitor growth, set milestones, and celebrate achievements along the way.",
                     },
                     {
                       question:
@@ -597,7 +598,7 @@ const Home = () => {
 
                   {/* Contact Button */}
                   <div className="text-center mt-6">
-                    <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
+                    <button className="inline-block px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                       Still have questions? Contact Us!
                     </button>
                   </div>
@@ -608,120 +609,7 @@ const Home = () => {
         </section>
 
         {/* Footer Section */}
-        <footer className="bg-gray-900 text-gray-300 relative overflow-hidden">
-          {/* Decorative gradient shapes */}
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-full mix-blend-multiply opacity-20 blur-3xl animate-pulse sm:w-72 sm:h-72"></div>
-          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-gradient-to-bl from-pink-500 to-indigo-500 rounded-full mix-blend-multiply opacity-20 blur-3xl animate-pulse sm:w-80 sm:h-80"></div>
-
-          <div className="container mx-auto px-6 md:px-12 py-16 relative z-10">
-            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-10">
-              {/* About */}
-              <div className="flex-1 min-w-[220px]">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                  Elevate Hub
-                </h3>
-                <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-                  Empowering individuals through mentorship and guidance to
-                  transform ambition into achievement. Join our community and
-                  grow with expert mentors.
-                </p>
-                {/* Social Icons */}
-                <div className="flex gap-3 mt-6 flex-wrap">
-                  {[
-                    FaFacebookF,
-                    FaTwitter,
-                    FaLinkedinIn,
-                    FaInstagram,
-                    FaGithub,
-                  ].map((Icon, idx) => (
-                    <a
-                      key={idx}
-                      href="#"
-                      className="p-3 bg-gray-800 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-600 transition-all duration-300 text-white"
-                    >
-                      <Icon className="text-lg" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick Links */}
-              <div className="flex-1 min-w-[160px]">
-                <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-                  Quick Links
-                </h4>
-                <ul className="space-y-2 text-sm sm:text-base">
-                  {["Home", "About", "Mentors", "Pricing", "Contact"].map(
-                    (link, idx) => (
-                      <li key={idx}>
-                        <a
-                          href={`/${link.toLowerCase()}`}
-                          className="hover:text-indigo-500 transition-colors duration-300"
-                        >
-                          {link}
-                        </a>
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-
-              {/* Resources */}
-              <div className="flex-1 min-w-[160px]">
-                <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-                  Resources
-                </h4>
-                <ul className="space-y-2 text-sm sm:text-base">
-                  {[
-                    "Blog",
-                    "FAQs",
-                    "Support",
-                    "Terms & Conditions",
-                    "Privacy Policy",
-                  ].map((res, idx) => (
-                    <li key={idx}>
-                      <a
-                        href="#"
-                        className="hover:text-indigo-500 transition-colors duration-300"
-                      >
-                        {res}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Newsletter */}
-              <div className="flex-1 min-w-[220px]">
-                <h4 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-                  Subscribe to Newsletter
-                </h4>
-                <p className="text-gray-400 mb-4 text-sm sm:text-base">
-                  Get the latest updates, mentorship tips, and offers.
-                </p>
-                <form className="flex flex-col sm:flex-row gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex-1 text-sm sm:text-base"
-                  />
-                  <button
-                    type="submit"
-                    className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 text-sm sm:text-base"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            {/* Footer Bottom */}
-            <div className="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm sm:text-base">
-              &copy; {new Date().getFullYear()} Elevate Hub. All rights
-              reserved.
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </main>
     </>
   );

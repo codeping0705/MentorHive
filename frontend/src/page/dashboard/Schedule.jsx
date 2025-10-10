@@ -20,6 +20,7 @@ const Schedule = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [editingSchedule, setEditingSchedule] = useState(null);
 
+  // Fetch schedules
   const fetchSchedules = async () => {
     setLoading(true);
     try {
@@ -37,6 +38,7 @@ const Schedule = () => {
     fetchSchedules();
   }, []);
 
+  // Handle create/update schedule
   const handleSubmit = async (values) => {
     try {
       const payload = {
@@ -82,11 +84,10 @@ const Schedule = () => {
                 <div key={s._id} className="p-4 bg-white rounded-lg shadow-md">
                   <h3 className="font-semibold text-lg">{s.topic}</h3>
                   <p>
-                    <strong>Mentee:</strong> {s.mentee.name} ({s.mentee.email})
+                    <strong>Student:</strong> {s.student.name} ({s.student.email})
                   </p>
                   <p>
-                    <strong>Date:</strong>{" "}
-                    {moment(s.date).format("DD MMM YYYY")}
+                    <strong>Date:</strong> {moment(s.date).format("DD MMM YYYY")}
                   </p>
                   <p>
                     <strong>Time:</strong> {s.time}
@@ -120,11 +121,11 @@ const Schedule = () => {
         >
           <Form layout="vertical" onFinish={handleSubmit}>
             <Form.Item
-              label="Mentee ID"
-              name="mentee"
-              rules={[{ required: true, message: "Enter mentee ID" }]}
+              label="Student ID"
+              name="student"
+              rules={[{ required: true, message: "Enter student ID" }]}
             >
-              <Input placeholder="Mentee ID" />
+              <Input placeholder="Student ID" />
             </Form.Item>
 
             <Form.Item

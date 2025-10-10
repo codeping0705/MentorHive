@@ -19,7 +19,5 @@ const routes = [
   { path: "/dashboard/bookings", element: <Booking />, isProtected: true },
   { path: "/dashboard/payment", element: <Payment />, isProtected: true },
   { path: "/dashboard/schedule", element: <Schedule />, isProtected: true },
-
 ];
 export default routes;
-
