@@ -7,18 +7,16 @@ import MentorCard from "./MentorCard";
 const TopMentors = () => {
   const [loading, setLoading] = useState(false);
   const [topMentors, setTopMentors] = useState([]);
-  const [showAll, setShowAll] = useState(false);
   const [allMentors, setAllMentors] = useState([]);
+  const [showAll, setShowAll] = useState(false);
   const { setMentorsData } = useMentorStore();
 
+  // Select random top 4 mentors
   const selectTopMentor = (mentors) => {
     const topSelectedMentors = [];
     const totalMentors = mentors.length;
 
-    while (
-      topSelectedMentors.length < 4 &&
-      topSelectedMentors.length < totalMentors
-    ) {
+    while (topSelectedMentors.length < 4 && topSelectedMentors.length < totalMentors) {
       const randomIndex = Math.floor(Math.random() * totalMentors);
       const randomMentor = mentors[randomIndex];
       if (!topSelectedMentors.includes(randomMentor)) {
@@ -29,12 +27,11 @@ const TopMentors = () => {
     return topSelectedMentors;
   };
 
+  // Fetch mentors from API
   const fetchAllMentors = async () => {
     setLoading(true);
     try {
       const response = await mentorApi.getAllMentors();
-      console.log("Full response:", response.data); // ✅ log the actual data
-
       const mentors = response?.data?.mentors || [];
       setMentorsData(mentors);
       setAllMentors(mentors);
@@ -69,24 +66,20 @@ const TopMentors = () => {
             Meet Our Top Mentors
           </h2>
           <p className="text-gray-600 text-lg">
-            Connect with experienced professionals ready to guide you on your
-            learning journey.
+            Connect with experienced professionals ready to guide you on your learning journey.
           </p>
         </div>
 
         {/* Mentor Cards Grid */}
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
           {displayedMentors.map((mentor, index) => (
-            <MentorCard
-              key={mentor._id || mentor.id || index}
-              mentor={mentor}
-            />
+            <MentorCard key={mentor._id || mentor.id || index} mentor={mentor} />
           ))}
         </ul>
 
-        {/* Show More Button */}
+        {/* Show More / Show Top Mentors Button */}
         {allMentors.length > 4 && (
-          <div className="flex justify-center mt-14">
+          <div className="flex justify-center mt-12">
             <button
               className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               onClick={() => setShowAll(!showAll)}
@@ -96,10 +89,6 @@ const TopMentors = () => {
           </div>
         )}
       </div>
-
-      {/* Decorative gradient circle for style */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-tr from-indigo-200 to-purple-100 rounded-full mix-blend-multiply blur-3xl opacity-30 animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-gradient-to-bl from-purple-200 to-indigo-100 rounded-full mix-blend-multiply blur-3xl opacity-30 animate-pulse"></div>
     </section>
   );
 };
