@@ -63,9 +63,6 @@ const userSchema = new Schema(
         type: Number,
         default: 0,
       },
-      college: { type: String, default: "" },
-      degree: { type: String, default: "" },
-      graduationYear: { type: Number, default: null },
       social: {
         linkedin: { type: String, default: "" },
         github: { type: String, default: "" },
@@ -74,6 +71,9 @@ const userSchema = new Schema(
         instagram: { type: String, default: "" },
       },
       // Add student-specific fields
+      college: { type: String, default: "" },
+      degree: { type: String, default: "" },
+      graduationYear: { type: Number, default: null },
     },
   },
   { timestamps: true }
