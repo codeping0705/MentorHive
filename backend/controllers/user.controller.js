@@ -5,6 +5,10 @@ const httpStatus = require("../utils/httpStatus");
 // Configure Cloudinary
 cloudinary.config(config.cloudinary);
 
+
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" }); // temporary storage
+
 const uploadPhoto = async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded" });
@@ -57,7 +61,9 @@ const updateUserProfile = async (req, res) => {
     const updatedUser = await userService.updateUserProfile(userId, req.body);
 
     if (!updatedUser) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     res.status(200).json({
@@ -70,7 +76,6 @@ const updateUserProfile = async (req, res) => {
     res.status(500).json({ success: false, message: "Error updating profile" });
   }
 };
-
 
 module.exports = {
   uploadPhoto,
