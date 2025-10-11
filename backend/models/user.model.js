@@ -20,8 +20,8 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      unique: true,
       required: true,
+      unique: true,
       trim: true,
     },
     password: {
@@ -36,7 +36,7 @@ const userSchema = new Schema(
     role: {
       type: String,
       enum: ["mentor", "student"],
-      default: null,
+      required: true,
     },
     profile: {
       tags: {
@@ -63,39 +63,28 @@ const userSchema = new Schema(
         type: Number,
         default: 0,
       },
+      college: { type: String, default: "" },
+      degree: { type: String, default: "" },
+      graduationYear: { type: Number, default: null },
       social: {
-        linkedin: {
-          type: String,
-          default: "",
-        },
-        github: {
-          type: String,
-          default: "",
-        },
-        twitter: {
-          type: String,
-          default: "",
-        },
-        facebook: {
-          type: String,
-          default: "",
-        },
-        instagram: {
-          type: String,
-          default: "",
-        },
+        linkedin: { type: String, default: "" },
+        github: { type: String, default: "" },
+        twitter: { type: String, default: "" },
+        facebook: { type: String, default: "" },
+        instagram: { type: String, default: "" },
       },
+      // Add student-specific fields
     },
   },
   { timestamps: true }
 );
 
-// Instance method to compare passwords
+// Compare password method
 userSchema.methods.isPasswordMatch = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// Pre-save hook to hash password
+// Hash password before saving
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 8);
@@ -103,8 +92,14 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Index for email field
-userSchema.index({ email: 1 });
+// Optional: hash password if using findOneAndUpdate
+userSchema.pre("findOneAndUpdate", async function (next) {
+  const update = this.getUpdate();
+  if (update.password) {
+    update.password = await bcrypt.hash(update.password, 8);
+  }
+  next();
+});
 
 const UserModel = model("User", userSchema);
 module.exports = UserModel;
