@@ -9,81 +9,77 @@ import {
   FaFacebook,
   FaInstagram,
   FaBriefcase,
-  FaClock
+  FaClock,
 } from "react-icons/fa";
 
 const MentorCard = ({ mentor }) => {
-  const { name, email, photoUrl, username, profile = {}, social = {} } = mentor;
-  const [isMobile, setIsMobile] = useState(false);
+  const { name, email, photoUrl, profile = {}, social = {} } = mentor;
+  const [isTabletOrMobile, setIsTabletOrMobile] = useState(false);
   const [flipped, setFlipped] = useState(false);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const checkScreen = () => setIsTabletOrMobile(window.innerWidth <= 1024);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
   const handleFlip = () => {
-    if (isMobile) setFlipped((prev) => !prev);
+    if (isTabletOrMobile) setFlipped((prev) => !prev);
   };
 
-  const transformStyle = {
-    transform: `perspective(1000px) rotateY(${(flipped || hovered) ? 180 : 0}deg)`,
+  const cardStyle = {
+    transform: `perspective(1000px) rotateY(${flipped || hovered ? 180 : 0}deg)`,
     transition: "transform 0.6s",
-    transformStyle: "preserve-3d"
+    transformStyle: "preserve-3d",
   };
 
-  const sideStyle = "absolute inset-0 w-full h-full rounded-2xl shadow-lg backface-hidden flex flex-col p-6";
+  const sideStyle =
+    "absolute inset-0 w-full h-full shadow-lg backface-hidden flex flex-col rounded-3xl overflow-hidden";
 
   return (
     <li
-      className="relative w-full sm:w-72 h-[28rem] mx-auto font-sans cursor-pointer"
-      onMouseEnter={() => !isMobile && setHovered(true)}
-      onMouseLeave={() => !isMobile && setHovered(false)}
+      className="relative w-full sm:w-80 h-[30rem] mx-auto cursor-pointer"
+      onMouseEnter={() => !isTabletOrMobile && setHovered(true)}
+      onMouseLeave={() => !isTabletOrMobile && setHovered(false)}
     >
-      <div style={transformStyle} className="relative w-full h-full">
+      <div style={cardStyle} className="relative w-full h-full">
         {/* FRONT SIDE */}
-        <div className={`${sideStyle} bg-white border border-gray-200`}>
-          <div className="flex flex-col items-center">
+        <div
+          className={`${sideStyle} bg-blue-50 border border-blue-100 p-0 justify-start`}
+        >
+          <div className="w-full h-[70%] bg-blue-100 overflow-hidden">
             <img
-              src={photoUrl || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+              src={
+                photoUrl ||
+                "https://media.istockphoto.com/id/1450340623/photo/portrait-of-successful-mature-boss-senior-businessman-in-glasses-asian-looking-at-camera-and.jpg?s=612x612&w=0&k=20&c=f0EqWiUuID5VB_NxBUEDn92W2HLENR15CFFPzr-I4XE="
+              }
               alt={name}
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-indigo-200 shadow-sm"
+              className="w-full h-full object-cover"
             />
-            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 text-center mt-2">{name}</h3>
+          </div>
 
-            {profile.title && <p className="text-blue-600 text-sm sm:text-base mt-1">{profile.title}</p>}
+          <div className="flex flex-col items-center justify-start p-4 h-[60%] overflow-auto">
+            <h3 className="text-xl font-bold text-gray-900 mt-2 text-center">
+              {name}
+            </h3>
+
+            {profile.title && (
+              <p className="text-blue-700 text-sm sm:text-base mt-1">
+                {profile.title}
+              </p>
+            )}
             {profile.company && (
-              <div className="flex items-center gap-1 sm:gap-2 mt-1 text-sm sm:text-base text-gray-700">
-                <FaBriefcase className="text-blue-500" />
-                <span>{profile.company}</span>
+              <div className="flex items-center gap-2 mt-1 text-gray-700 text-sm sm:text-base">
+                <FaBriefcase className="text-blue-500" /> {profile.company}
               </div>
             )}
-            {profile.experience && (
-              <div className="flex items-center gap-1 sm:gap-2 mt-1 text-sm sm:text-base text-gray-700">
-                <FaClock className="text-blue-500" />
-                <span>{profile.experience} yrs</span>
-              </div>
-            )}
-            {/* Skills */}
-            {profile.skills && profile.skills.length > 0 && (
-              <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mt-2">
-                {profile.skills.map((skill, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-indigo-100 text-blue-700 text-xs sm:text-sm px-2 py-1 rounded-full shadow-sm font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            )}
-            {isMobile && (
+
+            {isTabletOrMobile && (
               <button
                 onClick={handleFlip}
-                className="mt-4 px-5 py-2 text-sm sm:text-base font-medium rounded-full bg-blue-600 text-white hover:bg-indigo-700 transition duration-300"
+                className="mt-4 px-6 py-2 bg-blue-300 text-gray-900 font-medium rounded-full shadow hover:bg-blue-400 transition"
               >
                 View Details
               </button>
@@ -93,65 +89,122 @@ const MentorCard = ({ mentor }) => {
 
         {/* BACK SIDE */}
         <div
-          className={`${sideStyle} bg-white border border-gray-200 rotate-y-180`}
+          className={`${sideStyle} bg-white border border-blue-100 p-4 rotate-y-180 flex flex-col justify-between`}
           style={{ transform: "rotateY(180deg)" }}
         >
-          {/* Header */}
-          <div className="bg-blue-50 rounded-lg p-3 flex flex-col items-center text-center mb-3">
-            <h3 className="text-lg sm:text-xl font-bold text-blue-700">{name}</h3>
-            <p className="text-gray-500 text-sm sm:text-base">@{username}</p>
-            {profile.title && <p className="text-blue-500 text-sm sm:text-base">{profile.title}</p>}
-          </div>
-
-          {/* Info Sections */}
-          <div className="flex flex-col gap-2 flex-1 overflow-auto">
-            {profile.location && (
-              <div className="flex items-center gap-2 p-2 bg-gray-50 rounded shadow-sm text-gray-700 text-sm sm:text-base">
-                <FaMapMarkerAlt className="text-blue-500" />
-                <span>{profile.location}</span>
-              </div>
-            )}
-            <div className="flex items-center gap-2 p-2 bg-gray-50 rounded shadow-sm text-gray-700 text-sm sm:text-base break-all">
-              <FaEnvelope className="text-blue-500" />
-              <span>{email}</span>
+          <div className="flex flex-col gap-3 flex-1 overflow-auto">
+            <div className="flex flex-col items-center mb-2">
+              <h3 className="text-xl font-bold text-gray-900">{name}</h3>
+              {profile.title && (
+                <p className="text-blue-700 text-sm">{profile.title}</p>
+              )}
             </div>
-            {profile.college && (
-              <div className="flex items-center gap-2 p-2 bg-gray-50 rounded shadow-sm text-gray-700 text-sm sm:text-base">
-                <FaUniversity className="text-blue-500" />
-                <span>{profile.college}</span>
+
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg shadow-sm text-gray-700 break-all">
+                <FaEnvelope className="text-blue-500" /> {email}
               </div>
-            )}
-            {profile.company && (
-              <div className="flex items-center gap-2 p-2 bg-gray-50 rounded shadow-sm text-gray-700 text-sm sm:text-base">
-                <FaBriefcase className="text-blue-500" />
-                <span>{profile.company}</span>
-              </div>
-            )}
-            {profile.experience && (
-              <div className="flex items-center gap-2 p-2 bg-gray-50 rounded shadow-sm text-gray-700 text-sm sm:text-base">
-                <FaClock className="text-blue-500" />
-                <span>{profile.experience} yrs</span>
-              </div>
-            )}
+              {profile.college && (
+                <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg shadow-sm text-gray-700">
+                  <FaUniversity className="text-blue-500" /> {profile.college}
+                </div>
+              )}
+              {profile.company && (
+                <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg shadow-sm text-gray-700">
+                  <FaBriefcase className="text-blue-500" /> {profile.company}
+                </div>
+              )}
+              {profile.experience && (
+                <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg shadow-sm text-gray-700">
+                  <FaClock className="text-blue-500" /> {profile.experience} yrs
+                </div>
+              )}
+              {profile.location && (
+                <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg shadow-sm text-gray-700">
+                  <FaMapMarkerAlt className="text-blue-500" /> {profile.location}
+                </div>
+              )}
+
+              {/* Tags / Skills */}
+              {profile.tags && profile.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-3 justify-center">
+                  {profile.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-blue-100 text-blue-800 text-xs sm:text-sm px-3 py-1 rounded-full font-medium shadow-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center gap-3 mt-3 text-gray-600 text-lg sm:text-xl">
-            {social.linkedin && <a href={social.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700"><FaLinkedin /></a>}
-            {social.github && <a href={social.github} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700"><FaGithub /></a>}
-            {social.twitter && <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700"><FaTwitter /></a>}
-            {social.facebook && <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700"><FaFacebook /></a>}
-            {social.instagram && <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-indigo-700"><FaInstagram /></a>}
-          </div>
+          {/* Social Icons + Back Button */}
+          <div className="flex flex-col gap-3 mt-4">
+            <div className="flex justify-center gap-4 text-blue-600 text-xl sm:text-2xl">
+              {social.linkedin && (
+                <a
+                  href={social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-800"
+                >
+                  <FaLinkedin />
+                </a>
+              )}
+              {social.github && (
+                <a
+                  href={social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-800"
+                >
+                  <FaGithub />
+                </a>
+              )}
+              {social.twitter && (
+                <a
+                  href={social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-800"
+                >
+                  <FaTwitter />
+                </a>
+              )}
+              {social.facebook && (
+                <a
+                  href={social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-800"
+                >
+                  <FaFacebook />
+                </a>
+              )}
+              {social.instagram && (
+                <a
+                  href={social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-800"
+                >
+                  <FaInstagram />
+                </a>
+              )}
+            </div>
 
-          {isMobile && (
-            <button
-              onClick={handleFlip}
-              className="mt-3 px-4 py-2 text-sm sm:text-base font-medium rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300"
-            >
-              Back
-            </button>
-          )}
+            {isTabletOrMobile && (
+              <button
+                onClick={handleFlip}
+                className="mt-2 px-6 py-2 bg-blue-200 text-gray-900 font-medium rounded-full shadow hover:bg-blue-300 transition"
+              >
+                Back
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </li>

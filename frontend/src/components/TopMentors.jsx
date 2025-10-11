@@ -81,7 +81,7 @@ const TopMentors = () => {
         {allMentors.length > 4 && (
           <div className="flex justify-center mt-12">
             <button
-              className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? "Show Top Mentors" : "View All Mentors"}

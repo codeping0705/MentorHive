@@ -64,7 +64,7 @@ const Nav = () => {
             alt="Logo"
             className="w-8 h-8"
           />
-          <span className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+          <span className=" text-2xl font-bold block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
             MentorHive
           </span>
         </NavLink>

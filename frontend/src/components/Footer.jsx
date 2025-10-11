@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaFacebookF,
   FaTwitter,
@@ -8,6 +8,8 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const [subscribed, setSubscribed] = useState(false);
+
   const socialLinks = [
     { Icon: FaFacebookF, color: "#1877F2", hover: "hover:bg-[#1877F2]" },
     { Icon: FaTwitter, color: "#1DA1F2", hover: "hover:bg-[#1DA1F2]" },
@@ -15,6 +17,14 @@ const Footer = () => {
     { Icon: FaInstagram, color: "#E4405F", hover: "hover:bg-[#E4405F]" },
     { Icon: FaGithub, color: "#333333", hover: "hover:bg-[#333333]" },
   ];
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    setSubscribed(true);
+
+    // Hide message after 3 seconds
+    setTimeout(() => setSubscribed(false), 3000);
+  };
 
   return (
     <footer className="bg-gray-900 text-gray-300 relative overflow-hidden font-mono">
@@ -114,19 +124,29 @@ const Footer = () => {
             <p className="text-gray-400 mb-4 text-sm sm:text-base">
               Get the latest updates, mentorship tips, and offers.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3">
+            <form
+              className="flex flex-col sm:flex-row gap-3"
+              onSubmit={handleSubscribe}
+            >
               <input
                 type="email"
                 placeholder="Enter your email"
+                required
                 className="px-4 py-3 rounded-lg border border-gray-700 bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex-1 text-sm sm:text-base"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 text-sm sm:text-base"
+                className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 text-sm sm:text-base"
               >
                 Subscribe
               </button>
             </form>
+            {/* Flash Message */}
+            {subscribed && (
+              <p className="mt-3 text-green-400 font-medium text-sm sm:text-base">
+                Subscribed successfully!
+              </p>
+            )}
           </div>
         </div>
 

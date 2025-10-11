@@ -36,7 +36,7 @@ const Home = () => {
               </p>
               <div className="mt-8 flex justify-center md:justify-start gap-4 flex-wrap">
                 <NavLink to="/pricing">
-                  <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transition duration-300 transform hover:-translate-y-1">
+                  <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transition duration-300 transform hover:-translate-y-1">
                     Match with a Mentor
                   </button>
                 </NavLink>
@@ -88,7 +88,7 @@ const Home = () => {
 
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <NavLink to="/pricing">
-                  <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
+                  <button className="inline-block px-8 py-4 bg-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                     Join MentorHive
                   </button>
                 </NavLink>
@@ -441,10 +441,10 @@ const Home = () => {
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <button className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
+                <button className="inline-block px-4 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                   Get Started
                 </button>
-                <button className="px-6 py-3 bg-gray-200 text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
+                <button className="px-4 py-3 bg-gray-200 text-gray-900 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
                   Learn More
                 </button>
               </div>
@@ -491,12 +491,9 @@ const Home = () => {
 
             {/* View Pricing Button */}
             <div>
-              <NavLink
-                to="/pricing"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text- font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300"
-              >
+              <button className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                 View Pricing
-              </NavLink>
+              </button>
             </div>
           </div>
 
@@ -600,7 +597,7 @@ const Home = () => {
 
                   {/* Contact Button */}
                   <div className="text-center mt-6">
-                    <button className="inline-block px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
+                    <button className="inline-block px-6 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transform hover:-translate-y-1 transition-all duration-300">
                       Still have questions? Contact Us!
                     </button>
                   </div>
